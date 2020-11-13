@@ -36,6 +36,7 @@
 - hey yo
 - chào em
 - Hello
+- chào em phụ nữ
 
 ## intent:goodbye
 - goodbye
