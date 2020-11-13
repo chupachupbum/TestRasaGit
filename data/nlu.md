@@ -75,6 +75,7 @@
 - bye em
 - tạm biệt mai
 - nói chuyện với em sau
+- em đi đi
 
 ## intent:chat.bot_identity
 - bạn là ai
