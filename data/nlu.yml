@@ -8119,6 +8119,7 @@ nlu:
     - Whether fucker you
     - so we can say what the f\*\*\*
     - f\*\*\* are you
+    - the fuck are you
 - intent: chat.user_need_help
   examples: |
     - What can you do?
