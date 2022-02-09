@@ -1,0 +1,6 @@
+version: "2.0"
+stories:
+- story: upd - Get weather
+  steps:
+  - intent: upd.weather
+  - action: action_get_weather
