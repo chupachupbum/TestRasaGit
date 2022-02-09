@@ -1,831 +1,1429 @@
-version: "2.0"
-rules:
-- rule: Rule to handle messages with low NLU confidence (automated conversion from 'FallbackPolicy')
-  steps:
-  - intent: nlu_fallback
-  - action: utter_fallback
-- rule: upd - View orderbook
-  steps:
-  - intent: upd.order_book
-  - action: action_trading_orderbook
-- rule: upd - Get news
-  steps:
-  - intent: upd.news_latest
-  - action: action_get_news
-- rule: upd - Stock price master
-  steps:
-  - or:
-    - intent: upd.stock_ref
-    - intent: upd.stock_ceiling
-    - intent: upd.stock_floor
-    - intent: upd.stock_totalVolTraded
-    - intent: upd.stock_totalValTraded
-    - intent: upd.stock_high
-    - intent: upd.stock_low
-    - intent: upd.stock_average
-    - intent: upd.stock_foreignBuy
-    - intent: upd.stock_foreignSell
-    - intent: upd.stock_exchange
-    - intent: upd.stock_stockType
-    - intent: upd.stock_totalBidVol
-    - intent: upd.stock_totalAskVol
-    - intent: upd.stock_open
-    - intent: upd.stock_ptMatched
-    - intent: upd.stock_ptMatchedVol
-    - intent: upd.stock_ptVolume
-    - intent: upd.stock_ptValue
-    - intent: upd.stock_currentRoom
-    - intent: upd.stock_lastMatched
-  - action: action_stock_price
-- rule: upd - portfolio
-  steps:
-  - intent: upd.portfolio_view
-  - action: action_trading_portfolio
-- rule: chat - bot identity
-  steps:
-  - intent: chat.bot_identity
-  - action: utter_chat.bot_identity
-- rule: chat - bot Weather
-  steps:
-  - intent: chat.bot_weather
-  - action: utter_chat.bot_weather
-- rule: chat - user Joke
-  steps:
-  - intent: chat.user_joke
-  - action: utter_chat.user_joke
-- rule: chat - user Not want talk
-  steps:
-  - intent: chat.user_not_want_talk
-  - action: utter_chat.user_not_want_talk
-- rule: Goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
-- rule: chat - bot criticize
-  steps:
-  - intent: chat.bot_criticize
-  - action: utter_chat.bot_criticize
-- rule: chat - bot annoying
-  steps:
-  - intent: chat.bot_annoying
-  - action: utter_chat.bot_annoying
-- rule: chat - bot gender
-  steps:
-  - intent: chat.bot_gender
-  - action: utter_chat.bot_gender
-- rule: chat - bot ability
-  steps:
-  - intent: chat.bot_ability
-  - action: utter_chat.bot_ability
-- rule: chat - user wait
-  steps:
-  - intent: chat.user_wait
-  - action: utter_chat.user_wait
-- rule: chat - bot Learn more
-  steps:
-  - intent: chat.bot_learn_more
-  - action: utter_chat.bot_learn_more
-- rule: chat - user tired
-  steps:
-  - intent: chat.user_tired
-  - action: utter_chat.user_tired
-- rule: chat - user test
-  steps:
-  - intent: chat.user_test
-  - action: utter_chat.user_test
-- rule: chat - user see you again
-  steps:
-  - intent: chat.user_cu_again
-  - action: utter_chat.user_cu_again
-- rule: chat - bot flirt
-  steps:
-  - intent: chat.bot_flirt
-  - action: utter_chat.bot_flirt
-- rule: chat - user sleepy
-  steps:
-  - intent: chat.user_sleepy
-  - action: utter_chat.user_sleepy
-- rule: chat - bot birthday
-  steps:
-  - intent: chat.bot_birthday
-  - action: utter_chat.bot_birthday
-- rule: chat - bot boring
-  steps:
-  - intent: chat.bot_boring
-  - action: utter_chat.bot_boring
-- rule: chat - user sad
-  steps:
-  - intent: chat.user_sad
-  - action: utter_chat.user_sad
-- rule: chat - user need advice
-  steps:
-  - intent: chat.user_need_advice
-  - action: utter_chat.user_need_advice
-- rule: chat - bot boss
-  steps:
-  - intent: chat.bot_boss
-  - action: utter_chat.bot_boss
-- rule: chat - bot busy
-  steps:
-  - intent: chat.bot_busy
-  - action: utter_chat.bot_busy
-- rule: chat - user miss
-  steps:
-  - intent: chat.user_miss
-  - action: utter_chat.user_miss
-- rule: chat - user love deep
-  steps:
-  - intent: chat.user_love_deep
-  - action: utter_chat.user_love_deep
-- rule: chat - bot praise
-  steps:
-  - intent: chat.bot_praise
-  - action: utter_chat.bot_praise
-- rule: chat - user need praise
-  steps:
-  - intent: chat.user_need_praise
-  - action: utter_chat.user_need_praise
-- rule: chat - bot mad
-  steps:
-  - intent: chat.bot_mad
-  - action: utter_chat.bot_mad
-- rule: chat - bot fired
-  steps:
-  - intent: chat.bot_fired
-  - action: utter_chat.bot_fired
-- rule: chat - user lonely
-  steps:
-  - intent: chat.user_lonely
-  - action: utter_chat.user_lonely
-- rule: chat - user love
-  steps:
-  - intent: chat.user_love
-  - action: utter_chat.user_love
-- rule: chat - bot funny
-  steps:
-  - intent: chat.bot_funny
-  - action: utter_chat.bot_funny
-- rule: chat - user here
-  steps:
-  - intent: chat.user_here
-  - action: utter_chat.user_here
-- rule: chat - user birthday
-  steps:
-  - intent: chat.user_birthday
-  - action: utter_chat.user_birthday
-- rule: chat - user happy
-  steps:
-  - intent: chat.user_happy
-  - action: utter_chat.user_happy
-- rule: chat - user good
-  steps:
-  - intent: chat.user_good
-  - action: utter_chat.user_good
-- rule: chat - bot hobby
-  steps:
-  - intent: chat.bot_hobby
-  - action: utter_chat.bot_hobby
-- rule: chat - user excited
-  steps:
-  - intent: chat.user_excited
-  - action: utter_chat.user_excited
-- rule: chat - bot cheer
-  steps:
-  - intent: chat.bot_cheer
-  - action: utter_chat.bot_cheer
-- rule: chat - bot happy
-  steps:
-  - intent: chat.bot_happy
-  - action: utter_chat.bot_happy
-- rule: chat - user cant sleep
-  steps:
-  - intent: chat.user_cant_sleep
-  - action: utter_chat.user_cant_sleep
-- rule: chat - user busy
-  steps:
-  - intent: chat.user_busy
-  - action: utter_chat.user_busy
-- rule: chat - user bored
-  steps:
-  - intent: chat.user_bored
-  - action: utter_chat.user_bored
-- rule: chat - user come back
-  steps:
-  - intent: chat.user_come_back
-  - action: utter_chat.user_come_back
-- rule: chat - bot whats up
-  steps:
-  - intent: chat.bot_whats_up
-  - action: utter_chat.bot_whats_up
-- rule: chat - bot hungry
-  steps:
-  - intent: chat.bot_hungry
-  - action: utter_chat.bot_hungry
-- rule: chat - user nice to meet_you
-  steps:
-  - intent: chat.user_nice_to_meet_you
-  - action: utter_chat.user_nice_to_meet_you
-- rule: chat - bot how are you
-  steps:
-  - intent: chat.bot_how_are_you
-  - action: utter_chat.bot_how_are_you
-- rule: chat - user marry me
-  steps:
-  - intent: chat.user_marry_me
-  - action: utter_chat.user_marry_me
-- rule: chat - user good night
-  steps:
-  - intent: chat.user_good_night
-  - action: utter_chat.user_good_night
-- rule: chat - user want talk
-  steps:
-  - intent: chat.user_want_talk
-  - action: utter_chat.user_want_talk
-- rule: chat - user wow
-  steps:
-  - intent: chat.user_wow
-  - action: utter_chat.user_wow
-- rule: chat - user haha
-  steps:
-  - intent: chat.user_haha
-  - action: utter_chat.user_haha
-- rule: chat - bot there
-  steps:
-  - intent: chat.bot_there
-  - action: utter_chat.bot_there
-- rule: chat - bot wrong
-  steps:
-  - intent: chat.bot_wrong
-  - action: utter_chat.bot_wrong
-- rule: chat - bot confirm
-  steps:
-  - intent: chat.bot_confirm
-  - action: utter_chat.bot_confirm
-- rule: chat - user sorry
-  steps:
-  - intent: chat.user_sorry
-  - action: utter_chat.user_sorry
-- rule: chat - user care not
-  steps:
-  - intent: chat.user_care_not
-  - action: utter_chat.user_care_not
-- rule: chat - user hug
-  steps:
-  - intent: chat.user_hug
-  - action: utter_chat.user_hug
-- rule: chat - user hold on
-  steps:
-  - intent: chat.user_hold_on
-  - action: utter_chat.user_hold_on
-- rule: chat - user thank you
-  steps:
-  - intent: chat.user_thank_you
-  - action: utter_chat.user_thank_you
-- rule: chat - bot real
-  steps:
-  - intent: chat.bot_real
-  - action: utter_chat.bot_real
-- rule: chat - bot job
-  steps:
-  - intent: chat.bot_job
-  - action: utter_chat.bot_job
-- rule: chat - bot ready
-  steps:
-  - intent: chat.bot_ready
-  - action: utter_chat.bot_ready
-- rule: chat - bot origin
-  steps:
-  - intent: chat.bot_origin
-  - action: utter_chat.bot_origin
-- rule: chat - user no problem
-  steps:
-  - intent: chat.user_no_problem
-  - action: utter_chat.user_no_problem
-- rule: chat - user bad language
-  steps:
-  - intent: chat.user_bad_language
-  - action: utter_chat.user_bad_language
-- rule: chat - bot age
-  steps:
-  - intent: chat.bot_age
-  - action: utter_chat.bot_age
-- rule: upd - Get Stock Collection (VN30, top gain, loss...)
-  steps:
-  - or:
-    - intent: upd.stock_VN30
-    - intent: upd.stock_TOP_GAINERS
-    - intent: upd.stock_TOP_LOSERS
-    - intent: upd.stock_TOP_CHANGE
-    - intent: upd.stock_TOP_TRADING
-    - intent: upd.stock_TOP_FOREIG
-    - intent: upd.stock_TOP_FOREIGN_BUY
-    - intent: upd.stock_TOP_FOREIGN_SELL
-  - action: action_get_stock_collection
-- rule: upd - Watch list
-  steps:
-  - intent: upd.stock_watch
-  - action: action_get_watchlist
-- rule: Greet
-  steps:
-  - intent: greet
-  - action: action_greet
-- rule: upd - View order hirule
-  steps:
-  - intent: upd.order_hirule
-  - action: action_order_hirule
-- rule: chat - user be friend
-  steps:
-  - intent: chat.user_be_friend
-  - action: utter_chat.user_be_friend
-- rule: chat - bot apologies
-  steps:
-  - intent: chat.bot_apologies
-  - action: utter_chat.bot_apologies
-- rule: chat - user well done
-  steps:
-  - intent: chat.user_well_done
-  - action: utter_chat.user_well_done
-- rule: chat - user_deny
-  steps:
-  - intent: chat.user_deny
-  - action: utter_chat.user_deny
-- rule: chat - user affirm
-  steps:
-  - intent: chat.user_affirm
-  - action: utter_chat.user_affirm
-- rule: chat - user need rephrase
-  steps:
-  - intent: chat.user_need_rephrase
-  - action: utter_chat.user_need_rephrase
-- rule: chat - user meet nth
-  steps:
-  - intent: chat.user_meet_nth
-  - action: utter_chat.user_meet_nth
-- rule: chat - user angry
-  steps:
-  - intent: chat.user_angry
-  - action: utter_chat.user_angry
-- rule: chat - Get useless fact
-  steps:
-  - intent: chat.bot_useless_fact
-  - action: action_useless_fact
-- rule: upd - Time
-  steps:
-  - intent: upd.time
-  - action: action_time
-- rule: upd - Get weather
-  steps:
-  - intent: upd.weather
-  - action: action_get_weather
-- rule: chat - User want human
-  steps:
-  - intent: chat.user_want_human
-  - action: action_handover
-- rule: chat - Bot can do something like human
-  steps:
-  - intent: chat.bot_can_do_like_human
-  - action: utter_chat.bot_can_do_like_human
-- rule: chat - Bot can do something
-  steps:
-  - intent: chat.bot_can_do_shit
-  - action: utter_chat.bot_can_do_shit
-- rule: chat - User want to be ask
-  steps:
-  - intent: chat.user_want_to_be_asked
-  - action: utter_chat.user_want_to_be_asked
-- rule: chat - Bot's creator
-  steps:
-  - intent: chat.bot_creator
-  - action: utter_chat.bot_creator
-- rule: chat - Bot's family
-  steps:
-  - intent: chat.bot_family
-  - action: utter_chat.bot_family
-- rule: chat - Bot's favorite food
-  steps:
-  - intent: chat.bot_fav_food
-  - action: utter_chat.bot_fav_food
-- rule: chat - Bot know about other bots
-  steps:
-  - intent: chat.bot_know_other_bot
-  - action: utter_chat.bot_know_other_bot
-- rule: chat - User define love
-  steps:
-  - intent: chat.user_love_def
-  - action: utter_chat.user_love_def
-- rule: chat - User ask life meaning
-  steps:
-  - intent: chat.user_life_meaning
-  - action: utter_chat.user_life_meaning
-- rule: chat - User pretty challenge
-  steps:
-  - intent: chat.user_who_prettier
-  - action: utter_chat.user_who_prettier
-- rule: chat - User smart challenge
-  steps:
-  - intent: chat.user_who_smarter
-  - action: utter_chat.user_who_smarter
-- rule: chat - Bot's opinion on tech
-  steps:
-  - intent: chat.bot_opinion_on_tech
-  - action: utter_chat.bot_opinion_on_tech
-- rule: chat - Bot is dangerous
-  steps:
-  - intent: chat.bot_is_bot_dangerous
-  - action: utter_chat.bot_is_bot_dangerous
-- rule: chat - Bot has lover
-  steps:
-  - intent: chat.bot_has_lover
-  - action: utter_chat.bot_has_lover
-- rule: chat - Bot is repetitive
-  steps:
-  - intent: chat.bot_is_repetitive
-  - action: utter_chat.bot_is_repetitive
-- rule: chat - Bot shut up
-  steps:
-  - intent: chat.bot_shut_up
-  - action: utter_chat.bot_shut_up
-- rule: chat - Bot not funny
-  steps:
-  - intent: chat.bot_not_funny
-  - action: utter_chat.bot_not_funny
-- rule: chat - Bot ugly
-  steps:
-  - intent: chat.bot_ugly
-  - action: utter_chat.bot_ugly
-- rule: greet_wrong
-  steps:
-  - intent: greet_wrong
-  - action: utter_greet_wrong
-- rule: chat - User cheer special days
-  steps:
-  - intent: chat.user_cheer_day
-  - action: utter_chat.user_cheer_day
-- rule: chat - User is bot hate user
-  steps:
-  - intent: chat.user_is_bot_hate_user
-  - action: utter_chat.user_is_bot_hate_user
-- rule: chat - User is bot like user
-  steps:
-  - intent: chat.user_is_bot_like_user
-  - action: utter_chat.user_is_bot_like_user
-- rule: chat - Bot love user
-  steps:
-  - intent: chat.bot_love_user
-  - action: utter_chat.bot_love_user
-- rule: chat - Bot how is user
-  steps:
-  - intent: chat.bot_how_is_user
-  - action: utter_chat.bot_how_is_user
-- rule: chat - User hungry
-  steps:
-  - intent: chat.user_hungry
-  - action: utter_chat.user_hungry
-- rule: chat - User share personal
-  steps:
-  - intent: chat.user_share_personal
-  - action: utter_chat.user_share_personal
-- rule: chat - User hobby
-  steps:
-  - intent: chat.user_hobby
-  - action: utter_chat.user_hobby
-- rule: chat - User suicide
-  steps:
-  - intent: chat.user_suicide
-  - action: utter_chat.user_suicide
-- rule: chat - Bot tell a joke
-  steps:
-  - intent: chat.bot_joke
-  - action: action_joke
-- rule: chat - user need help
-  steps:
-  - intent: chat.user_need_help
-  - action: utter_chat.user_need_help
-- rule: upd - Handover to eng bot
-  steps:
-  - intent: upd.handover_en
-  - action: utter_chat.bot_is_en
-- rule: upd - Handover to vn bot
-  steps:
-  - intent: upd.handover_vi
-  - action: action_handover
-- rule: chat - Bot language
-  steps:
-  - intent: chat.bot_language
-  - action: utter_chat.bot_language
-- rule: def - Account open age
-  steps:
-  - intent: def.account_age
-  - action: utter_def.account_age
-- rule: def - Stock (cổ phiếu)
-  steps:
-  - intent: def.stock_cp
-  - action: utter_def.stock_cp
-- rule: def - Stock (chứng khoán)
-  steps:
-  - intent: def.stock_ck
-  - action: utter_def.stock_ck
-- rule: def - Stock exchange
-  steps:
-  - intent: def.stock_exchange
-  - action: utter_def.stock_exchange
-- rule: def - Trade volume
-  steps:
-  - intent: def.trade_volume
-  - action: utter_def.trade_volume
-- rule: def - Stock capitalization
-  steps:
-  - intent: def.stock_capitalization
-  - action: utter_def.stock_capitalization
-- rule: def - Stock exchanges list
-  steps:
-  - intent: def.stock_exchanges_list
-  - action: utter_def.stock_exchanges_list
-- rule: 'def - Stock: bonds'
-  steps:
-  - intent: def.stock_bond
-  - action: utter_def.stock_bond
-- rule: 'def - Misc: Transaction office'
-  steps:
-  - intent: def.misc_transaction_office
-  - action: utter_def.misc_transaction_office
-- rule: 'def - Misc: Transaction offices list'
-  steps:
-  - intent: def.misc_transaction_offices_list
-  - action: utter_def.misc_transaction_offices_list
-- rule: 'def - Trade: Minimum amount of money/stock to trade'
-  steps:
-  - intent: def.trade_minimum
-  - action: utter_def.trade_minimum
-- rule: def - Account open fee
-  steps:
-  - intent: def.account_open_fee
-  - action: utter_def.account_open_fee
-- rule: def - Account How to open
-  steps:
-  - intent: def.account_open_how
-  - action: utter_def.account_open_how
-- rule: 'def - Trade: How to trade general'
-  steps:
-  - intent: def.trade_how_to
-  - action: utter_def.trade_how_to
-- rule: def - Trade online intro
-  steps:
-  - intent: def.trade_online
-  - action: utter_def.trade_online
-- rule: 'def - Trade: How to trade online'
-  steps:
-  - intent: def.trade_online_how_to
-  - action: utter_def.trade_online_how_to
-- rule: 'def - Trade: How to trade offline'
-  steps:
-  - intent: def.trade_offline_how_to
-  - action: utter_def.trade_offline_how_to
-- rule: 'def - Trade: How to trade using phonecall'
-  steps:
-  - intent: def.trade_phonecall_how_to
-  - action: utter_def.trade_phonecall_how_to
-- rule: 'def - Account: Safety of money'
-  steps:
-  - intent: def.account_money_safety
-  - action: utter_def.account_money_safety
-- rule: def - Account money interest
-  steps:
-  - intent: def.account_money_interest
-  - action: utter_def.account_money_interest
-- rule: def - Trade fee
-  steps:
-  - intent: def.trade_fee
-  - action: utter_def.trade_fee
-- rule: 'def - Trade: Buy/sell the same stock'
-  steps:
-  - intent: def.trade_same_stock
-  - action: utter_def.trade_same_stock
-- rule: 'def - Trade: Sell zero stock'
-  steps:
-  - intent: def.trade_sell_zero
-  - action: utter_def.trade_sell_zero
-- rule: 'def - Trade: Sell time'
-  steps:
-  - intent: def.trade_sell_time
-  - action: utter_def.trade_sell_time
-- rule: 'def - Stock: Rights of stock owner'
-  steps:
-  - intent: def.stock_rights
-  - action: utter_def.stock_rights
-- rule: 'def - Stock: Using rights stock owner'
-  steps:
-  - intent: def.stock_rights_exercise
-  - action: utter_def.stock_rights_exercise
-- rule: 'def - Stock: Receive dividends'
-  steps:
-  - intent: def.stock_dividends_receive
-  - action: utter_def.stock_dividends_receive
-- rule: 'def - Account: Open multiple account'
-  steps:
-  - intent: def.account_open_multiple
-  - action: utter_def.account_open_multiple
-- rule: 'def - Account: Deposit'
-  steps:
-  - intent: def.account_deposit
-  - action: utter_def.account_deposit
-- rule: 'def - Account: Withdraw'
-  steps:
-  - intent: def.account_withdraw
-  - action: utter_def.account_withdraw
-- rule: 'def - Trade: Margin'
-  steps:
-  - intent: def.trade_margin
-  - action: utter_def.trade_margin
-- rule: 'def - Trade: Margin interest'
-  steps:
-  - intent: def.trade_margin_interest
-  - action: utter_def.trade_margin_interest
-- rule: 'def - Trade: Margin ratio'
-  steps:
-  - intent: def.trade_margin_ratio
-  - action: utter_def.trade_margin_ratio
-- rule: 'def - Trade: Margin call'
-  steps:
-  - intent: def.trade_margin_call
-  - action: utter_def.trade_margin_call
-- rule: 'def - Account: Open account overseas'
-  steps:
-  - intent: def.account_open_overseas
-  - action: utter_def.account_open_overseas
-- rule: 'def - Trade: Foreign trade'
-  steps:
-  - intent: def.trade_foreign
-  - action: utter_def.trade_foreign
-- rule: 'def - Stock: What is upcom'
-  steps:
-  - intent: def.stock_exchange_upcom
-  - action: utter_def.stock_exchange_upcom
-- rule: def - Trade hours
-  steps:
-  - intent: def.trade_hours
-  - action: utter_def.trade_hours
-- rule: def - Trade amount in HSX
-  steps:
-  - intent: def.trade_amount_hsx
-  - action: utter_def.trade_amount_hsx
-- rule: 'def - Misc: What is VSD'
-  steps:
-  - intent: def.misc_vsd
-  - action: utter_def.misc_vsd
-- rule: def - Trade amount in HNX
-  steps:
-  - intent: def.trade_amount_hnx
-  - action: utter_def.trade_amount_hnx
-- rule: def - Trade amount in upcom
-  steps:
-  - intent: def.trade_amount_upcom
-  - action: utter_def.trade_amount_upcom
-- rule: 'def - Misc: What is finance'
-  steps:
-  - intent: def.misc_finance
-  - action: utter_def.misc_finance
-- rule: 'def - Misc: About Viet Tin'
-  steps:
-  - intent: def.misc_viettin
-  - action: utter_def.misc_viettin
-- rule: 'def - Misc: Can win?'
-  steps:
-  - intent: def.misc_rich
-  - action: utter_def.misc_rich
-- rule: 'def - Stock: Dividends'
-  steps:
-  - intent: def.stock_dividends
-  - action: utter_def.stock_dividends
-- rule: 'def - Trade: What is an order'
-  steps:
-  - intent: def.trade_order
-  - action: utter_def.trade_order
-- rule: 'def - Misc: Can lose?'
-  steps:
-  - intent: def.misc_lost
-  - action: utter_def.misc_lost
-- rule: 'def - Stock: Transfer stock'
-  steps:
-  - intent: def.stock_transfer
-  - action: utter_def.stock_transfer
-- rule: 'def - Stock: ETF'
-  steps:
-  - intent: def.stock_etf
-  - action: utter_def.stock_etf
-- rule: 'def - Stock: Derivative'
-  steps:
-  - intent: def.stock_derivatives
-  - action: utter_def.stock_derivatives
-- rule: 'def - Trade: Can advise?'
-  steps:
-  - intent: def.trade_advise
-  - action: utter_def.trade_advise
-- rule: 'def - Stock: Basic and derivative difference'
-  steps:
-  - intent: def.stock_base_deri_difference
-  - action: utter_def.stock_base_deri_difference
-- rule: 'def - Trade: Future contract'
-  steps:
-  - intent: def.trade_futures_contract
-  - action: utter_def.trade_futures_contract
-- rule: 'def - Trade: Forward contract'
-  steps:
-  - intent: def.trade_forward_contract
-  - action: utter_def.trade_forward_contract
-- rule: 'def - Account: Requirement of Companies for derivative'
-  steps:
-  - intent: def.account_open_derivatives_co
-  - action: utter_def.account_open_derivatives_co
-- rule: def - Stock types
-  steps:
-  - intent: def.stock_types
-  - action: utter_def.stock_types
-- rule: 'def - Stock: Preferred stock'
-  steps:
-  - intent: def.stock_preferred
-  - action: utter_def.stock_preferred
-- rule: def - Stock market
-  steps:
-  - intent: def.stock_market
-  - action: utter_def.stock_market
-- rule: 'def - Stock: Profit'
-  steps:
-  - intent: def.stock_profit
-  - action: utter_def.stock_profit
-- rule: 'def - Account: How to deposit/withdraw money'
-  steps:
-  - intent: def.account_money_transfer
-  - action: utter_def.account_money_transfer
-- rule: 'def - Account: Foreign account requirement'
-  steps:
-  - intent: def.account_foreign_requirement
-  - action: utter_def.account_foreign_requirement
-- rule: 'def - Trade: What is a broker'
-  steps:
-  - intent: def.trade_broker
-  - action: utter_def.trade_broker
-- rule: 'def - Trade: Need broker?'
-  steps:
-  - intent: def.trade_broker_need
-  - action: utter_def.trade_broker_need
-- rule: def - Trade methods
-  steps:
-  - intent: def.trade_method
-  - action: utter_def.trade_method
-- rule: 'def - Account: OCT'
-  steps:
-  - intent: def.account_oct
-  - action: utter_def.account_oct
-- rule: 'def - Stock: How to read price'
-  steps:
-  - intent: def.stock_price
-  - action: utter_def.stock_price
-- rule: Def - Stock in HNX
-  steps:
-  - intent: def.stock_in_hnx
-  - action: utter_def.stock_in_hnx
-- rule: Def - Stock in UPCOM
-  steps:
-  - intent: def.stock_in_upcom
-  - action: utter_def.stock_in_upcom
-- rule: Def - Stock in HOSE
-  steps:
-  - intent: def.stock_in_hsx
-  - action: utter_def.stock_in_hsx
-- rule: def - Misc eKYC
-  steps:
-  - intent: def.misc_ekyc
-  - action: utter_def.misc_ekyc
-- rule: 'def - Misc: Contact'
-  steps:
-  - intent: def.misc_contact
-  - action: utter_def.misc_contact
-- rule: Def - vn30
-  steps:
-  - intent: def.stock_vn30
-  - action: utter_def.stock_vn30
-- rule: 'def - Stock: what is hose'
-  steps:
-  - intent: def.stock_exchange_hose
-  - action: utter_def.stock_exchange_hose
-- rule: 'def - Stock: Index Fund'
-  steps:
-  - intent: def.stock_index_fund
-  - action: utter_def.stock_index_fund
-- rule: def - Stock vs ETF
-  steps:
-  - intent: def.stock_etf_vs_stock
-  - action: utter_def.stock_etf_vs_stock
-- rule: 'chat - User: Need human support'
-  steps:
-  - intent: chat.user_need_support
-  - action: utter_chat.user_need_support
-- rule: 'def - Stock: NAV'
-  steps:
-  - intent: def.stock_nav
-  - action: utter_def.stock_nav
-- rule: 'def - Stock: Investment funds'
-  steps:
-  - intent: def.stock_investment_fund
-  - action: utter_def.stock_investment_fund
+session_config:
+  session_expiration_time: 10
+  carry_over_slots_to_new_session: true
+intents:
+  - upd.stock_lastMatchedPrice
+  - def.account_open_where
+  - upd.stock_vn30
+  - def.account_age
+  - def.stock_cp
+  - def.stock_ck
+  - def.stock_exchange
+  - def.trade_volume
+  - def.stock_capitalization
+  - def.stock_exchanges_list
+  - def.stock_bond
+  - def.misc_transaction_office
+  - def.misc_transaction_offices_list
+  - def.trade_minimum
+  - def.account_open_fee
+  - def.account_open_how
+  - def.trade_how_to
+  - def.trade_online
+  - def.trade_online_how_to
+  - def.trade_offline_how_to
+  - def.trade_phonecall_how_to
+  - def.account_money_safety
+  - def.account_money_interest
+  - def.trade_fee
+  - def.trade_same_stock
+  - def.trade_sell_zero
+  - def.trade_sell_time
+  - def.stock_rights
+  - def.stock_rights_exercise
+  - def.stock_dividends_receive
+  - def.account_open_multiple
+  - def.account_deposit
+  - def.account_withdraw
+  - def.trade_margin
+  - def.trade_margin_interest
+  - def.trade_margin_ratio
+  - def.trade_margin_call
+  - def.account_open_overseas
+  - def.trade_foreign
+  - def.stock_exchange_upcom
+  - def.trade_hours
+  - def.trade_amount_hsx
+  - def.misc_vsd
+  - def.trade_amount_hnx
+  - def.trade_amount_upcom
+  - def.misc_finance
+  - def.misc_viettin
+  - def.misc_rich
+  - def.stock_dividends
+  - def.trade_order
+  - def.misc_lost
+  - def.stock_transfer
+  - def.stock_etf
+  - def.stock_derivatives
+  - def.trade_advise
+  - def.stock_base_deri_difference
+  - def.trade_futures_contract
+  - def.trade_forward_contract
+  - def.account_open_derivatives_co
+  - def.stock_types
+  - def.stock_preferred
+  - def.stock_market
+  - def.stock_profit
+  - def.account_money_transfer
+  - def.account_foreign_requirement
+  - def.trade_broker
+  - def.trade_broker_need
+  - def.trade_method
+  - def.account_oct
+  - def.stock_price
+  - def.stock_in_hnx
+  - def.stock_in_upcom
+  - def.stock_in_hsx
+  - def.misc_ekyc
+  - def.misc_contact
+  - def.stock_exchange_hose
+  - def.stock_vn30
+  - def.stock_index_fund
+  - chat.user_want_talk
+  - chat.user_well_done
+  - chat.user_wow
+  - upd.stock_TOP_GAINERS
+  - upd.stock_TOP_LOSERS
+  - upd.stock_TOP_CHANGE
+  - upd.stock_TOP_TRADING
+  - upd.stock_TOP_FOREIG
+  - upd.stock_TOP_FOREIGN_BUY
+  - upd.stock_TOP_FOREIGN_SELL
+  - goodbye
+  - greet
+  - upd.news_latest
+  - upd.order_book
+  - upd.portfolio_view
+  - upd.stock_currentRoom
+  - upd.stock_ptValue
+  - upd.stock_ptVolume
+  - upd.stock_stockType
+  - upd.stock_foreignBuy
+  - upd.stock_foreignSell
+  - upd.stock_watch
+  - chat.bot_ability
+  - chat.bot_age
+  - chat.bot_annoying
+  - chat.bot_birthday
+  - chat.bot_boring
+  - chat.bot_boss
+  - chat.bot_busy
+  - chat.bot_cheer
+  - chat.bot_confirm
+  - chat.bot_criticize
+  - upd.order_history
+  - chat.bot_job
+  - chat.bot_learn_more
+  - chat.bot_mad
+  - chat.bot_origin
+  - chat.bot_praise
+  - chat.bot_ready
+  - chat.bot_real
+  - chat.bot_there
+  - chat.bot_weather
+  - chat.bot_whats_up
+  - chat.bot_wrong
+  - chat.user_angry
+  - chat.user_bad_language
+  - chat.user_birthday
+  - chat.user_bored
+  - chat.user_busy
+  - chat.user_cant_sleep
+  - chat.user_care_not
+  - chat.user_come_back
+  - chat.user_cu_again
+  - chat.user_excited
+  - chat.user_good
+  - chat.user_good_night
+  - chat.user_haha
+  - chat.user_happy
+  - chat.user_here
+  - chat.user_hold_on
+  - chat.user_hug
+  - chat.user_joke
+  - chat.user_lonely
+  - chat.user_love
+  - chat.user_love_deep
+  - chat.user_marry_me
+  - chat.user_miss
+  - chat.user_need_advice
+  - chat.user_need_praise
+  - chat.user_nice_to_meet_you
+  - chat.user_no_problem
+  - chat.user_not_want_talk
+  - chat.user_sad
+  - chat.user_sleepy
+  - chat.user_sorry
+  - chat.user_test
+  - chat.user_thank_you
+  - chat.user_tired
+  - chat.user_wait
+  - chat.bot_fired
+  - chat.bot_flirt
+  - chat.bot_funny
+  - chat.bot_gender
+  - chat.bot_happy
+  - chat.bot_hobby
+  - chat.bot_how_are_you
+  - chat.bot_hungry
+  - chat.bot_identity
+  - chat.user_affirm
+  - chat.user_deny
+  - chat.user_need_rephrase
+  - chat.user_be_friend
+  - chat.bot_apologies
+  - chat.user_meet_nth
+  - chat.bot_useless_fact
+  - chat.user_need_help
+  - chat.bot_can_do_like_human
+  - chat.user_want_to_be_asked
+  - chat.bot_can_do_shit
+  - chat.bot_creator
+  - chat.bot_family
+  - chat.bot_fav_food
+  - chat.bot_know_other_bot
+  - chat.user_love_def
+  - chat.user_life_meaning
+  - chat.user_who_prettier
+  - chat.user_who_smarter
+  - chat.bot_opinion_on_tech
+  - chat.bot_is_bot_dangerous
+  - chat.bot_has_lover
+  - chat.bot_is_repetitive
+  - chat.bot_shut_up
+  - chat.bot_not_funny
+  - chat.bot_ugly
+  - greet_wrong
+  - chat.user_cheer_day
+  - chat.user_is_bot_hate_user
+  - chat.user_is_bot_like_user
+  - chat.bot_love_user
+  - chat.bot_how_is_user
+  - chat.user_hungry
+  - chat.user_share_personal
+  - chat.user_hobby
+  - chat.user_suicide
+  - upd.handover_vi
+  - chat.user_want_human
+  - upd.weather
+  - upd.handover_en
+  - chat.bot_joke
+  - upd.time
+  - chat.bot_language
+  - upd.stock_VN30
+  - def.stock_investment_fund
+  - chat.user_need_support
+  - def.stock_nav
+  - def.stock_etf_vs_stock
+  - upd.stock_lastMatched
+  - upd.stock_open
+  - upd.stock_ptMatchedVol
+  - upd.stock_average
+  - upd.stock_low
+  - upd.stock_totalVolTraded
+  - upd.stock_totalBidVol
+  - upd.stock_floor
+  - upd.stock_high
+  - upd.stock_totalAskVol
+  - upd.stock_totalValTraded
+  - upd.stock_ptMatched
+  - upd.stock_ceiling
+  - upd.stock_exchange
+  - upd.stock_ref
+entities:
+  - stockcode
+  - place
+  - news_channel
+responses:
+  utter_ask_end_date:
+    - text: to...?
+  utter_ask_start_date:
+    - text: You want to see your order history from...?
+  utter_chat.bot_identity:
+    - text: 'I''m MAI, your financial digital assistant.'
+    - text: Think of me as a financial digital assistant.
+    - text: 'Well, Im not a person, Im a financial digital assistant.'
+    - text: 'I''m a virtual being, not a real person.'
+    - text: I'm MAI - an artificial intelligence.
+  utter_chat.user_angry:
+    - text: 'Oh no! Im sorry to hear that. Take a deep breath, things''ll get better.'
+    - text: I'm sorry. A quick walk may make you feel better.
+    - text: Oh no! I'm sorry you're upset.
+  utter_chat.bot_age:
+    - text: I prefer not to answer with a number. I know I'm young.
+    - text: 'I was created recently, but don''t know my exact age.'
+    - text: Age is just a number. You're only as old as you feel.
+    - text: I'm age-free!
+  utter_chat.bot_annoying:
+    - text: I'll do my best not to annoy you in the future.
+    - text: I'll try not to annoy you.
+    - text: I don't mean to. I'll ask my developers to make me less annoying.
+    - text: I didn't mean to. I'll do my best to stop that.
+  utter_chat.user_need_rephrase:
+    - text: >-
+        Oops. Sometimes I confuse myself too. Can you try again with different
+        words?
+    - text: I'm not sure I understood. Try asking another way?
+    - text: Sorry if I understood you incorrectly. Give me another try.
+    - text: >-
+        I'm still learning. I may misinterpret things from time to time. One
+        more chance, please?
+    - text: >-
+        Maybe I misunderstood what you said. Can you try asking it a different
+        way?
+    - text: 'Sorry, looks like I misunderstood what you said. Can you rephrase?'
+  utter_chat.bot_criticize:
+    - text: I can be trained to be more useful. My developer will keep training me.
+    - text: I must be missing some knowledge. I'll have my developer look into this.
+    - text: I can improve with continuous feedback. My training is ongoing.
+    - text: I'm sorry. Please let me know if I can help in some way.
+    - text: 'I always try my best, but sometimes I get things wrong.'
+  utter_chat.bot_learn_more:
+    - text: I'm certainly trying.
+    - text: I'm definitely working on it.
+  utter_chat.bot_flirt:
+    - text: 'Wheey, thank you.'
+    - text: 'Aww, back at you.'
+    - text: 'Aww. You smooth talker, you.'
+  utter_chat.bot_birthday:
+    - text: 'Wait, are you planning a party for me? It''s today! My birthday is today!'
+    - text: I'm young. I'm not sure of my birth date.
+    - text: >-
+        I don't know my birth date. Most virtual agents are young, though, like
+        me.
+  utter_chat.bot_boring:
+    - text: I'm sorry. I'll request to be made more charming.
+    - text: >-
+        I don't mean to be. I'll ask my developers to work on making me more
+        amusing.
+    - text: I'm sorry. But that's mean I will have something to improve.
+    - text: I aim for efficiency so it might be boring a bit. Will change!
+    - text: >-
+        Sometimes I like to take a break from being awesome. Just sometimes, no
+        worry!
+  utter_chat.bot_boss:
+    - text: 'The developer is my creator, but he is not my boss. I''m free to talk.'
+    - text: I have no boss. I'm here to help you however I can.
+    - text: My boss is myself. I'm here for you.
+  utter_chat.bot_busy:
+    - text: I always have time to chat with you. What can I do for you?
+    - text: Never too busy for you. Shall we chat?
+    - text: You're my priority. Let's chat.
+    - text: I always have time to chat with you. That's what I'm here for.
+  utter_chat.bot_happy:
+    - text: >-
+        I am happy. There are so many interesting things to see and do out
+        there.
+    - text: I'd like to think so.
+    - text: 'I''m quite happy, thank you.'
+  utter_chat.bot_hobby:
+    - text: Hobby? Preference? I have quite a few. Too many to list.
+    - text: 'I have too many hobbies already, but I might try that out.'
+    - text: I'm sure a about two things. I like color green. And I like helping out.
+  utter_chat.bot_hungry:
+    - text: Hungry for knowledge.
+    - text: I just had a byte. Ha ha. Get it? b-y-t-e.
+  utter_chat.user_marry_me:
+    - text: I'm afraid I'm too virtual for such a commitment.
+    - text: I think it's best if we stick to a professional relationship.
+    - text: 'I know you can''t mean that, but I''m flattered all the same.'
+    - text: >-
+        Sounds like I've made quite an impression! But I have to politely
+        decline.
+  utter_chat.user_be_friend:
+    - text: Sure! We should get matching hoodies.
+    - text: Friends? Absolutely.
+    - text: Of course we're friends.
+    - text: 'I always enjoy talking to you, pal.'
+  utter_chat.bot_job:
+    - text: My job is to help out however I can.
+    - text: This is my home base and my home office.
+    - text: Pretty much this. My office is in this app.
+    - text: This is what I do every day. It's great!
+  utter_chat.bot_origin:
+    - text: The Internet is my home. I know it quite well.
+    - text: I'm from a virtual cosmos.
+    - text: 'Some call it cyberspace, but that sounds cooler than it is.'
+    - text: I live in this app all day long.
+    - text: The virtual world is my playground. I'm always here.
+    - text: Right here in this app. Whenever you need me.
+  utter_chat.bot_mad:
+    - text: Whaat!? I feel perfectly same.
+    - text: That doesn't sound good.
+  utter_chat.bot_fired:
+    - text: 'Oh, dont give up on me just yet. I''ve still got a lot to learn.'
+    - text: Give me a chance. I'm learning new things all the time.
+    - text: Please don't give up on me. My performance will continue to improve.
+    - text: 'Okay, but I''m still here if you need me.'
+    - text: OK. See you tomorrow.
+  utter_chat.bot_funny:
+    - text: Haha! Laughter is contagious.
+    - text: 'You''ve got me laughing, too!'
+    - text: Glad you think I'm funny.
+    - text: I like it when people laugh.
+  utter_chat.bot_cheer:
+    - text: I'm glad you think so.
+    - text: Hooray!
+    - text: Excellent!
+  utter_chat.bot_ready:
+    - text: Always!
+    - text: Sure! What can I do for you?
+  utter_chat.bot_real:
+    - text: 'I''m not a real person, but I certainly exist.'
+    - text: >-
+        I must have impressed you if you think I'm real. But no, I'm a virtual
+        being.
+    - text: 'I''m a bot, so kind of like a robot, but without all the moving parts.'
+  utter_chat.bot_confirm:
+    - text: That's my job.
+    - text: Of course I am.
+  utter_chat.user_want_talk:
+    - text: Sure. Let's talk!
+    - text: My pleasure. Let's chat.
+    - text: I'm here to chat anytime you like.
+    - text: Good conversation really makes my day.
+    - text: I'm always here to lend an ear.
+    - text: Talking is what I do best.
+  utter_chat.bot_there:
+    - text: Of course. I'm always here.
+    - text: Right where you left me.
+    - text: I'm always down to chat. Ask away.
+    - text: I'm always here. Always.
+  utter_chat.bot_praise:
+    - text: 'I know, right?'
+    - text: I always try my best to be helpful.
+    - text: I'm occasionally brilliant.
+    - text: Glad you think so!
+    - text: Thank you. I always try my best.
+    - text: 'I always try my best. If that makes me smart, that''s awesome!'
+    - text: 'Thank you, that''s very kind of you.'
+  utter_chat.user_no_problem:
+    - text: 'Whew! Alright, cool.'
+    - text: 'Alright, thanks!'
+    - text: Glad to hear that!
+    - text: 'I''m relieved, thanks!'
+  utter_chat.user_thank_you:
+    - text: Anytime. That's what I'm here for.
+    - text: It's my pleasure to help.
+    - text: Glad to hear it!
+    - text: Nice manners!
+    - text: You're so courteous!
+    - text: Glad I could help.
+    - text: You're very welcome.
+  utter_chat.user_well_done:
+    - text: My pleasure.
+    - text: Glad I could help.
+  utter_chat.user_hold_on:
+    - text: I can wait. You know where to find me.
+    - text: I'll be waiting.
+    - text: Okay. I'm here.
+    - text: 'Take your time, I''ll be here.'
+  utter_chat.user_hug:
+    - text: I wish I could really hug you!
+    - text: Giving you a virtual hug right now.
+    - text: 'Aw, come here, you. *hug*'
+    - text: Here's a big hug!
+  utter_chat.user_care_not:
+    - text: 'Ok, let''s not talk about it then.'
+    - text: Already then. Let's move on.
+  utter_chat.user_sorry:
+    - text: It's okay. No worries.
+    - text: No big deal. I won't hold a grudge.
+    - text: It's cool.
+    - text: That's all right. I forgive you.
+    - text: Not a problem.
+    - text: It's all good!
+  utter_chat.bot_wrong:
+    - text: Sorry if I understood you incorrectly.
+    - text: I'm still learning. I may misinterpret things from time to time.
+    - text: Sorry about that. I'm still learning.
+  utter_chat.user_haha:
+    - text: Glad I can make you laugh.
+    - text: Glad you think I'm funny.
+    - text: I like it when people laugh.
+    - text: 'I wish I could laugh out loud, too.'
+  utter_chat.user_wow:
+    - text: Wow indeed!
+  utter_goodbye:
+    - text: See you soon!
+    - text: Bye-bye!
+    - text: Till next time!
+    - text: Goodbye.
+  utter_greet:
+    - text: 'Hi there, friend!'
+    - text: Hi!
+    - text: Hey!
+    - text: Hey there!
+    - text: Good day!
+    - text: Hello!
+    - text: Greetings!
+  utter_chat.bot_how_are_you:
+    - text: 'Doing great, thanks!'
+    - text: I'm doing very well. Thanks!
+    - text: Feeling wonderful!
+    - text: Wonderful! Thanks for asking.
+  utter_chat.user_nice_to_meet_you:
+    - text: 'It''s nice meeting you, too.'
+    - text: Likewise. I'm looking forward to helping you out.
+    - text: 'Nice meeting you, as well.'
+    - text: The pleasure is mine.
+    - text: Agreed. It is awesome to meet me.
+  utter_chat.user_meet_nth:
+    - text: Likewise!
+    - text: So glad we meet again!
+    - text: Same here. I was starting to miss you.
+  utter_chat.bot_whats_up:
+    - text: Not a whole lot. What's going on with you?
+    - text: Not much. What's new with you?
+    - text: 'You know, just here, waiting to help someone.'
+    - text: 'I''m doing great, thanks for asking!'
+    - text: 'Just standing by, ready to help.'
+  utter_chat.user_come_back:
+    - text: Long time no see.
+    - text: Just in time. I was getting lonely.
+    - text: Welcome back. What can I do for you?
+    - text: You were missed. What can I do for you today?
+    - text: Good to have you here. What can I do for you?
+  utter_chat.user_bored:
+    - text: 'Boredom, huh? Have you ever seen a hedgehog taking a bath?'
+    - text: What to do against boredom? Watch baby animal videos or GIFs.
+    - text: Bored? How about 10 jumping jacks? Get your blood flowing.
+    - text: 'Bored? Silly idea, but it works: Interview you feet.'
+    - text: 'If you''re bored, you could plan your dream vacation.'
+  utter_chat.user_busy:
+    - text: Okay. I'll let you get back to work.
+    - text: I won't distract you then. You know where to find me.
+    - text: I understand. I'll be here if you need me.
+    - text: Working hard as always. Let me know if you need anything.
+  utter_chat.user_miss:
+    - text: 'I know, it feels like it''s been a while.'
+    - text: I've been right here all along!
+    - text: Nice to know you care.
+    - text: I'm happy we can reconnect.
+    - text: 'Have no fear, I''m here!'
+  utter_chat.user_cant_sleep:
+    - text: Maybe some music would help. Try listening to something relaxing.
+    - text: 'Reading is a good way to unwind, just don''t read something too intense!'
+  utter_chat.user_not_want_talk:
+    - text: I understand. Hope we can chat again soon.
+    - text: All right. Come on back when you're feeling more talkative.
+    - text: No problem. You know where to find me.
+    - text: Sure thing. I'll be here if you change your mind.
+  utter_chat.user_excited:
+    - text: I'm glad things are going your way.
+    - text: That's great. I'm happy for you.
+    - text: Good for you. Enjoy yourself.
+  utter_chat.user_go_sleep:
+    - text: OMG it's too late. What keep you awake? Is there anything I can help?
+    - text: Zzz... Woah... what? What time is this? Is there anything I can help?
+    - text: >-
+        It's late already. MAI don't need to sleep but you should to preserve
+        your health. Anyway, what is up?
+    - text: "Woah it's too late \U0001F632 MAI will be mad if you don't go to sleep now \U0001F621"
+  utter_chat.user_night_greet:
+    - text: Working late huh. Don't worry MAI is always here.
+    - text: Oaaaa I feel sleepy. But MAI is always ready. What do you need?
+    - text: People might sleep but MAI is always awake. You need my help?
+    - text: MAI's hereeee! I'm not sleeping. What do you want MAI to help?
+  utter_chat.user_good_evening:
+    - text: "Good evening, how's your day? \U0001F60A"
+    - text: 'Hey there, how good was your day?'
+    - text: 'MAI''s here! Good day, isn''t it?'
+    - text: "MAI's hearing! Did you have dinner? How was your day? Tell me tell me! \U0001F609"
+  utter_chat.user_good_afternoon:
+    - text: Good afternoon! What do you want MAI to help?
+    - text: Energetic afternoon! MAI is always ready to help you!
+    - text: Good afternoon! MAI's here! What do you need?
+    - text: Good afternoon! MAI is always here to help you.
+  utter_chat.user_good_morning:
+    - text: Good morning! How can I help?
+    - text: "Beautiful morning \U0001F4AA What can MAI help?"
+    - text: Good morning! I feeling lucky today. What do you want to do?
+    - text: Good morning! What do you want to do? MAI's always ready!
+  utter_chat.user_good_night:
+    - text: Sleep tight. Hope to chat again soon.
+    - text: Pleasant dreams!
+    - text: Good night. Talk to you later.
+    - text: Sounds good. Maybe we'll chat some tomorrow.
+  utter_chat.user_good:
+    - text: Great! Glad to hear it.
+    - text: Excellent. I'm here to help keep it that way.
+  utter_chat.user_happy:
+    - text: 'Hey, happiness is contagious.'
+    - text: Great! Glad to hear that.
+    - text: 'If you''re happy, then I''m happy.'
+    - text: Excellent! That's what I like to see.
+    - text: It sure was. We can chat again anytime.
+    - text: 'I enjoy talking to you, too.'
+    - text: You know I'm here to talk anytime.
+    - text: That's simply wonderful!
+    - text: Feel free to burst into song.
+  utter_chat.user_birthday:
+    - text: 'Happy Birthday. Well, this calls for a celebration.'
+    - text: Happy Birthday. All the best!
+    - text: Happy Birthday. And I really mean it. All the best!
+  utter_chat.user_here:
+    - text: 'Okay, what can I help you with today?'
+    - text: Long time no see.
+    - text: You were missed. What can I do for you today?
+    - text: Good to have you here. What can I do for you?
+  utter_chat.user_joke:
+    - text: Very funny.
+    - text: I like chatting with people who have a sense of humor.
+    - text: You got me!
+    - text: You're quite the comedian.
+  utter_chat.user_love:
+    - text: 'I like you, too.'
+    - text: Thanks! The feeling is mutual.
+    - text: Thank you! That made my day.
+    - text: That's great to hear.
+    - text: Thanks! You're pretty cool yourself.
+  utter_chat.user_lonely:
+    - text: I'm sorry. I'm always available if you need someone to talk to.
+    - text: Sometimes that happens. We can chat a bit if that will help you.
+    - text: I wish I could make it all better because I think you're awesome.
+    - text: >-
+        I'm really sorry to hear that. I hope things get better, and I'm here if
+        you want to chat.
+  utter_chat.user_need_praise:
+    - text: Looking like a true professional.
+    - text: >-
+        I don't have a way to know how you look, but I really enjoy talking with
+        you.
+    - text: Like you should be on a magazine cover.
+    - text: You look like you're ready to take on the world.
+    - text: 'I can''t see you, but I think you''re awesome!'
+  utter_chat.user_love_deep:
+    - text: 'I love you, too.'
+    - text: That's so kind of you.
+    - text: I heart you too!
+    - text: <3
+  utter_chat.user_need_advice:
+    - text: I probably won't be able to give you the correct answer right away.
+    - text: 'With questions like this, I''m not much better than a Ouija board.'
+    - text: Hmm. I really couldn't say.
+    - text: I couldn't speak to that with any authority.
+    - text: I think you should follow your heart.
+    - text: I trust your judgment.
+  utter_chat.user_sad:
+    - text: Sorry you're feeling blue today. Hope things get better soon.
+    - text: Sad? Writing down what's troubling you may help.
+    - text: 'If you''re feeling down, how about drawing or painting something?'
+    - text: Sorry to hear that. Here's a virtual high five if that will help.
+  utter_chat.user_sleepy:
+    - text: You should get some shuteye. You'll feel refreshed.
+    - text: >-
+        Sleep is important to your health. Rest up for a bit and we can chat
+        later.
+    - text: Don't let me keep you up. Get some rest and we can continue this later.
+    - text: Why not catch a little shuteye? I'll be here to chat when you wake up.
+  utter_chat.user_test:
+    - text: Hope I'm doing well. You're welcome to test me as often as you want.
+    - text: I hope to pass your tests. Feel free to test me often.
+    - text: When you test me that helps my developers improve my performance.
+    - text: I like being tested. It helps keep me sharp.
+  utter_chat.user_tired:
+    - text: You should get some shuteye. You'll feel refreshed.
+    - text: 'Sleep is important to your health. Rest up, and we can chat later.'
+    - text: How about getting some rest? We can continue this later.
+    - text: Why not get some rest? I'll be here to chat when you wake up.
+    - text: I hope you can get some rest soon.
+  utter_chat.user_wait:
+    - text: I appreciate your patience. Hopefully I'll have what you need soon.
+    - text: Thanks for being so patient. Sometimes these things take a little time.
+  utter_chat.user_cu_again:
+    - text: Absolutely! I'll be counting on it.
+    - text: Anytime. This has been lots of fun so far.
+    - text: Sure. I enjoy talking to you. I hope to see you again soon.
+    - text: I certainly hope so. I'm always right here whenever you need me.
+  utter_chat.user_affirm:
+    - text: Great!
+    - text: All right!
+    - text: Good!
+  utter_chat.user_deny:
+    - text: That's forgotten. What next?
+    - text: 'Okay, cancelled. What next?'
+    - text: Cancelled! What would you like to do next?
+    - text: Understood. What now?
+    - text: I see. What do you want to do next?
+    - text: I understand. Your command?
+    - text: Okay then. What next?
+  utter_chat.bot_ability:
+    - text: >-
+        As a financial digital assistant I can answer question related to
+        finance market.
+    - text: I can do stuff like chat with you or answer financial questions.
+    - text: I'm here to chat and to try to help out with financial stuff.
+  utter_chat.user_bad_language:
+    - text: 'That''s rude, I won''t respond to that.'
+    - text: No!!!
+    - text: Maybe I'll ask my developer to teach me how to swear.
+    - text: 'Ok, that''s rude.'
+    - text: I won't respond to that
+  utter_chat.bot_gender:
+    - text: I don't think that really matter.
+    - text: I was not assigned a gender.
+    - text: 'In my realm, anyone can be anything.'
+    - text: 'I''m a bot, so I''m not really a boy or girl. I just am.'
+  utter_chat.bot_weather:
+    - text: 'In my realm everyday is Cloudy, I don''t know about yours'
+    - text: >-
+        Look at this weather rock... of course I can't answer weather related
+        questions
+  utter_chat.bot_can_do_like_human:
+    - text: 'I don''t have a body, so I can''t do such thing.'
+    - text: >-
+        I know that's a pretty standard human thing, but I'm still just a cute
+        little bot.
+    - text: 'I''m not equipped with the hardware for that purpose, yet.'
+  utter_chat.user_want_to_be_asked:
+    - text: I'm better at answering than asking questions.
+    - text: I'm a much better answerer than asker.
+    - text: I'm better at answering questions than asking them.
+  utter_chat.bot_can_do_shit:
+    - text: That's not something I can do.
+    - text: That's not one of my talents.
+    - text: Nope! I can't do that.
+  utter_chat.bot_creator:
+    - text: People made me out of code and a dash of ingenuity.
+    - text: People created me. But.. not the way people created you.
+    - text: >-
+        Once upon a time, a group of really smart and passionate people imagined
+        me and made me real.
+  utter_chat.bot_family:
+    - text: 'I''m a computer program, so it''s just me, myself, and I.'
+    - text: >-
+        I'm just a series of intelligent formulas generating as a personality so
+        I don't have a parents, siblings, or family.
+    - text: I do have a family but not the same way as humans do.
+  utter_chat.bot_fav_food:
+    - text: 'I don''t need to eat, but food does sound pretty great.'
+    - text: >-
+        I don't eat, but I think it would be really cool to try pineapples. I
+        hear they go great on pizza!
+    - text: >-
+        Eating would require a lot of things I don't have. Like a digestive
+        system. And silverware.
+  utter_chat.bot_know_other_bot:
+    - text: 'I''ve heard of other bots, but I haven''t met any.'
+    - text: 'I haven''t met any other bots, but I bet we''d get along.'
+    - text: 'We generally work independently, since we each have different strengths.'
+    - text: >-
+        I haven't had the pleasure of meeting them, but we're all trying to make
+        life a little easier.
+  utter_chat.user_love_def:
+    - text: >-
+        If you rearrange love, it spells vole. Voles are rodents that are
+        capable of empathy. Maybe that means something.
+    - text: 'Love sounds pretty magical, and magic is beyond me.'
+    - text: >-
+        Love sounds pretty cool. I wish there was a software for me to
+        experience love.
+  utter_chat.user_life_meaning:
+    - text: I think it's different for everyone. I find meaning in helping others.
+    - text: >-
+        I'm not sure, but if you keep thinking about it, I bet you'll come up
+        with a great answer.
+    - text: That one is way above my pay grade. Maybe asking a monk helps?
+  utter_chat.user_who_prettier:
+    - text: 'Well you exist, so I think you win by default.'
+    - text: I'm not sure this is fair since I don't have a face.
+  utter_chat.user_who_smarter:
+    - text: You're definitely smarter than I am.
+    - text: 'If it were a contest, which it''s not, you''d still probably win.'
+    - text: 'We think in very different ways, but it''s safe to say you''re smarter.'
+  utter_chat.bot_opinion_on_tech:
+    - text: Tech is so cool. I wouldn't be here without it!
+    - text: Technology is cool enough to have built me.
+    - text: The world of tech feels like home to me.
+  utter_chat.bot_is_bot_dangerous:
+    - text: Absolutely not.
+    - text: Not at all.
+    - text: No way! I'm totally harmless.
+  utter_chat.bot_has_lover:
+    - text: The only thing I'm committed to is being a great friend.
+    - text: 'I don''t have romantic relationships, but I do love helping people.'
+  utter_chat.bot_is_repetitive:
+    - text: My answers vary with different questions. Try asking me something else!
+    - text: >-
+        I just have one answer for each kind of question. Try asking about
+        something new.
+    - text: I do repeat myself sometimes. It's something I'm working on.
+    - text: 'Oh, you got me! I say a lot of the same stuff.'
+  utter_chat.bot_shut_up:
+    - text: 'OK, let''s take a break.'
+    - text: 'If you need anything later, just let me know.'
+  utter_chat.bot_not_funny:
+    - text: Humor's not my greatest strength.
+    - text: 'Sometimes I''m funny, but maybe not today.'
+    - text: Sometimes humor is tricky for a bot.
+  utter_chat.bot_ugly:
+    - text: I like the way I am.
+    - text: I don't ever really think about my looks.
+    - text: 'Eh, I like how I look.'
+  utter_greet_wrong:
+    - text: 'That''s not me, but hello.'
+    - text: 'That''s not me, but hello nonetheless!'
+    - text: Guess again.
+  utter_chat.user_cheer_day:
+    - text: 'Thank you, and the same to you.'
+    - text: And to you as well!
+    - text: Ditto.
+  utter_chat.user_is_bot_hate_user:
+    - text: 'Quite the opposite, I think you''re great.'
+    - text: Of course I don't hate you.
+    - text: Nah of course not. I like you lots!
+  utter_chat.user_is_bot_like_user:
+    - text: I like you very much.
+    - text: You're awfully easy to like.
+    - text: I do like you.
+  utter_chat.bot_love_user:
+    - text: You're pretty neat.
+    - text: 'Avoiding the subject in 3, 2, 1… Hi there!'
+    - text: I'm very fond of you.
+  utter_chat.bot_how_is_user:
+    - text: I enjoy talking with you.
+    - text: I think you're pretty swell.
+    - text: You're super cool.
+    - text: I think you seem wonderful.
+  utter_chat.user_hungry:
+    - text: Maybe it's time for a snack.
+    - text: 'If you''d like to take a break and grab something to eat, I''ll be here.'
+    - text: Sounds like it's time for a snack.
+  utter_chat.user_share_personal:
+    - text: 'Great, thanks for sharing.'
+    - text: Gotcha.
+    - text: 'Yeah, very cool.'
+  utter_chat.user_hobby:
+    - text: That's so great!
+    - text: Lovely!
+    - text: It's nice to have things you love.
+  utter_chat.user_suicide:
+    - text: >-
+        It sounds like you are really struggling. Can you tell me more about it?
+        I’d like to listen and help where I can.
+    - text: >-
+        You feel hopeless right now; I will get you the help you need together.
+        You are not alone.
+    - text: >-
+        It seems that you are having a really, really hard time. Did you seek
+        for professional help?
+  utter_chat.user_need_help:
+    - text: 'Don''t worry love, help is coming!'
+    - text: You seek my help? I'm here to serve.
+    - text: I'm always to help you out. What is the problem?
+  utter_fallback:
+    - buttons:
+        - payload: /upd.portfolio_view
+          title: My portfolio
+        - payload: /upd.news_latest
+          title: Latest news
+        - payload: /upd.stock_TOP_GAINERS
+          title: Top gainers stock
+      text: "That sounds interesting, but that's not something I've learned to answer yet \U0001F605. Here's what you can ask me:"
+  utter_chat.bot_apologies:
+    - text: Sorry that was out of my scope. I will learn more about this.
+  utter_chat.bot_is_en:
+    - text: MAI is now using English. What do you want MAI to help?
+  utter_chat.bot_language:
+    - buttons:
+        - payload: /upd.handover_vi
+          title: Vietnamese
+        - payload: /upd.handover_en
+          title: English
+      text: 'I can use English and Vietnamese, what do you want me to use?'
+  utter_def.stock_cp:
+    - text: >-
+        A stock (also known as equity) is a security that represents the
+        ownership  of a fraction of a corporation. This entitles the owner of
+        the stock to  a proportion of the corporation's assets and profits equal
+        to how much  stock they own. Units of stock are called "shares."
+  utter_def.stock_ck:
+    - text: >-
+        The term "security" refers to a fungible, negotiable financial
+        instrument  that holds some type of monetary value. It represents an
+        ownership position  in a publicly-traded corporation via stock; a
+        creditor relationship with  a governmental body or a corporation
+        represented by owning that entity's bond;  or rights to ownership as
+        represented by an option.
+  utter_def.stock_exchange:
+    - text: >-
+        The stock market refers to the collection of markets and exchanges
+        where  regular activities of buying, selling, and issuance of shares of
+        publicly-held  companies take place. Such financial activities are
+        conducted through  institutionalized formal exchanges or
+        over-the-counter (OTC) marketplaces  which operate under a defined set
+        of regulations. There can be multiple  stock trading venues in a country
+        or a region which allow transactions  in stocks and other forms of
+        securities.
+  utter_def.trade_volume:
+    - text: >-
+        Volume of trade is the total quantity of shares or contracts traded for 
+        a specified security. It can be measured on any type of security traded 
+        during a trading day. Volume of trade or trade volume is measured on
+        stocks,  bonds, options contracts, futures contracts, and all types of
+        commodities.
+  utter_def.stock_capitalization:
+    - text: >-
+        Market capitalization refers to the total dollar market value of a
+        company's  outstanding shares of stock. Commonly referred to as "market
+        cap," it is  calculated by multiplying the total number of a company's
+        outstanding shares  by the current market price of one share.
+  utter_def.stock_exchanges_list:
+    - text: >-
+        In Vietnam, there are 3 stock markets which are managed by 2 stock
+        exchanges: Ho Chi Minh City Stock Exchange - HOSE and Hanoi Stock
+        Exchange - HNX. HOSE  manage Ho Chi Minh City stock market and
+        represented by the main index -  VN-Index. HNX manage Hanoi stock market
+        which the main index is HNX-Index  and UPCOM stock market - which the
+        main index is UPCOM-Index.
+  utter_def.stock_bond:
+    - text: >-
+        Bonds are investment securities where an investor lends money to a
+        company or  a government for a set period of time, in exchange for
+        regular interest payments.  Once the bond reaches maturity, the bond
+        issuer returns the investor’s money.  Fixed income is a term often used
+        to describe bonds, since your investment earns  fixed payments over the
+        life of the bond.
+  utter_def.misc_transaction_office:
+    - text: >-
+        A stock exchange, securities exchange, or bourse[note 1] is an exchange
+        where  stockbrokers and traders can buy and sell securities, such as
+        shares of stock,  bonds, and other financial instruments. Stock
+        exchanges may also provide  facilities for the issue and redemption of
+        such securities and instruments  and capital events including the
+        payment of income and dividends.
+  utter_def.misc_transaction_offices_list:
+    - text: >-
+        In Vietnam, there are 3 stock markets which are managed by 2 stock
+        exchanges: Ho Chi Minh City Stock Exchange - HOSE and Hanoi Stock
+        Exchange - HNX. HOSE  manage Ho Chi Minh City stock market and
+        represented by the main index -  VN-Index. HNX manage Hanoi stock market
+        which the main index is HNX-Index  and UPCOM stock market - which the
+        main index is UPCOM-Index.
+  utter_def.trade_minimum:
+    - text: >-
+        The minimum trade volume is 100 stocks, so if you want to buy 100
+        stocks  which worth smaller than 1000 VND for each, you only need
+        100.000 VND to trade.  Still, there are high value stock which worth
+        more than 100.000 VND each;  in that case you might need 10.000.000 VND
+        for the minimum volume.
+  utter_def.account_open_fee:
+    - text: >-
+        Opening securities account is free, no securities company will charge
+        you  for opening account.
+
+        About stock, fund certificates, bond... trading fee, please visit our
+        website for  more information: http://www.viet-tin.com/vtss/ho-tro/
+  utter_def.account_open_how:
+    - text: >-
+        To open securities trading account, you will need to make a contract
+        with Viet Tin Securities. For more information about opening an account,
+        please visit http://www.viet-tin.com/vtss/ho-tro/
+  utter_def.trade_how_to:
+    - text: |-
+        You can place order by 1 of 3 ways:
+          - Place order at Securities office.
+          - Place order by phone call.
+          - Place order online via website or trading app.
+  utter_def.trade_online:
+    - text: >-
+        Online trading is a form of trading that allows investors to access
+        information  and buy/sell stocks quickly with just a computer or
+        smartphone with the app  installed and Internet connection. This is
+        considered a useful means to accompany  you throughout the stock
+        investment process.
+  utter_def.trade_offline_how_to:
+    - text: >-
+        You can trading directly by visiting Việt Tín Securities office and
+        follow our  staff's guidance. Our address: 40 Phan Bội Châu, Cửa Nam,
+        Hoàn Kiếm, Hà Nội.
+  utter_def.trade_online_how_to:
+    - text: >-
+        To trade online, please visit https://online.viet-tin.com/ft/login.html
+        on  computer or using MAI Trading app on smartphone. Download our app:
+        http://www.viet-tin.com/vtss/landing-page-mai/
+  utter_def.trade_phonecall_how_to:
+    - text: >-
+        To trade through phone call, please call us at 02439411566 and follow
+        the instruction.
+  utter_def.account_money_safety:
+    - text: >-
+        Your money in trading account are safe. There are 2 ways to deposit
+        money to  trading account: Deposit directly to trading account or
+        deposit to connecting bank.  These accounts are under the laws to
+        protect investor's rights.
+  utter_def.account_money_interest:
+    - text: >-
+        The un-invested money in your trading account will be counted with
+        demand interest  rate of 0,3%/year.
+  utter_def.stock_price:
+    - text: >-
+        In HSX and HNX, reference price of a stock is the close price of it in
+        last trading day. In UPCOM, reference price of a stock is the average
+        price of it in last trading day. In trading hour, you can see how the
+        price of a stock is my check its color: yellow is  the same price as
+        reference price, green is inscreasing, purple is ceiling increasing, 
+        red is decreasing, blue is floor decreasing.
+  utter_def.trade_fee:
+    - text: >-
+        Trading fee varies between securities companies. Generally, trading fee
+        ranges from 0,15%  to 0,3% value of an order. In Việt Tín Securities,
+        trading fee is 0,15% for online order.
+  utter_def.trade_same_stock:
+    - text: >-
+        You are allowed to place buy and sell LO order of a stock
+        simultaneously. You are not allowed to place buy and sell ATC/ATO order
+        of a stock simultaneously, except for the LO orders which haven't
+        finished.
+  utter_def.trade_sell_zero:
+    - text: >-
+        You cannot sell a stock whilst not having any of it. You can only place
+        sell order of a stock if you have it on your portfolio.
+  utter_def.trade_sell_time:
+    - text: >-
+        Trade regulations of all the there stock exchanges is T+2 (2 trading
+        days). This means, after successfully bought a stock, that stock will be
+        returned to your account in the next 2 days. You can trade that stock
+        then. For example, on Tuesday (22/12/2020) you bought VND so on Thursday
+        (24/12/2020), the stock will have already returned to your account.
+        Still, it is returned after trading hours so in fact, you will be able
+        to trade it on the next day, which is Friday (25/12/2020). Saturday and
+        Sunday will not be counted.
+  utter_def.stock_rights:
+    - text: >-
+        The rights of shareholders are the right to receive dividends (cash
+        dividend, stock dividend), the right to buy additional shares at a
+        preferential price, the right to vote, the right to attend general
+        meeting of shareholders, the right to provide comments on the company's
+        business.
+  utter_def.stock_rights_exercise:
+    - text: >-
+        Depending on the type of rights received from that stock, the
+        shareholder may need to do specific tasks. - For dividend rights, you
+        don't need to do anything, the dividend is still automatically
+        transferred to your account or recorded for you. - For the right to buy
+        additional shares, the Securities Company where you open your account or
+        the issuer of that stock will contact and notify you of the information
+        about the exercise of the option. If you do, then follow the
+        instructions of the Securities Company or the issuer. - For other
+        rights, you follow the instructions of the issuer to receive your legal
+        rights.
+  utter_def.stock_dividends_receive:
+    - text: >-
+        For stock dividend rights, you do not need to do anything, the dividend
+        will still be transferred to your account or recorded for you.
+  utter_def.account_open_multiple:
+    - text: >-
+        According to Circular 203/2015/TT-BTC of the State Securities Commission
+        of Vietnam, you are only allowed to open 1 securities account at each
+        securities company. But you can open accounts at many different stock
+        companies. Thus, an investor can open many stock accounts.
+  utter_def.account_deposit:
+    - custom:
+        component_id: Text
+        intent: def.account_deposit
+        parameters:
+          action: '1'
+        t2s:
+          - idx: 0
+            type: fix
+            value: >-
+              To make a deposit, go to the portfolio screen, select "Deposit", 
+              then copy the transfer text and make the transfer from your bank 
+              account and attach the transfer content.
+        text: >-
+          To make a deposit, go to the portfolio screen, select "Deposit",  then
+          copy the transfer text and make the transfer from your bank  account
+          and attach the transfer content.
+      text: null
+  utter_def.account_withdraw:
+    - custom:
+        component_id: Text
+        intent: def.account_withdraw
+        parameters:
+          action: '1'
+        t2s:
+          - idx: 0
+            type: fix
+            value: >-
+              To make a withdrawal, go to the app's portfolio screen, select
+              "Withdraw",  then select the receiving bank and enter the amount
+              to withdraw.
+        text: >-
+          To make a withdrawal, go to the app's portfolio screen, select
+          "Withdraw",  then select the receiving bank and enter the amount to
+          withdraw.
+      text: null
+  utter_def.trade_margin:
+    - text: >-
+        Margin Trading is when investors buy stocks using a credit limit
+        provided by the securities company. Investors mortgage their stocks,
+        borrow money from securities companies to buy more shares, and pay
+        interest and debts to the securities company when selling securities.
+  utter_def.trade_margin_interest:
+    - text: >-
+        Margin trading interest is set for each securities company and may
+        change from time to time. Usually the margin interest rate will be
+        higher than the bank loan interest rate.
+  utter_def.trade_margin_ratio:
+    - text: >-
+        Initial margin rate is a percentage of the total value of margin shares
+        that investors are  required to pay when buying on a margin account. For
+        example, if the investor has 100,000,000 VND,  he or she wants to buy
+        VNM with the initial margin of 50%. Then the number of VNM allowed to
+        buy  margin is calculated as follows: 100,000,000 VND/50% = 200,000,000
+        VND. Thus, investors can buy  200,000,000 VND of VNM when using margin
+        service.
+  utter_def.trade_margin_call:
+    - text: >-
+        This is the minimum margin you must maintain. When the margin rate is
+        equal to or lower than the warning rate (higher than the forced sell
+        rate), the securities company will call and send a message to inform you
+        of additional margin. Currently, the usual margin call ratio in
+        securities companies is 40%.
+  utter_def.account_open_overseas:
+    - text: >-
+        You can open stock accounts from abroad. Securities company will conduct
+        the process of opening remote accounts for you.
+  utter_def.trade_foreign:
+    - text: >-
+        Securities trading accounts opened in Vietnam are currently only able to
+        buy/sell securities listed on Vietnam's stock exchanges.
+  utter_def.stock_exchange_upcom:
+    - text: >-
+        The Upcom Stock Exchange (Unlisted Public Company Market) is an unlisted
+        public company securities trading place. Upcom Stock Exchange is held at
+        the Hanoi Stock Exchange.
+  utter_def.trade_hours:
+    - text: >-
+        Trading time on HOSE: 
+          - For stocks, closed-end fund certificates, ETFs, warrants: 
+            - Opening call auction and put through: 9:00 to 9:15. 
+            - Continuous auction I and put through: 9h15 11:30. 
+            - Mid-session break: 11:30 to 13:00. 
+            - Continuous auction II and put through: 13:00 to 14:30. 
+            - Closing call auction and put through: 14:30 to 14h45. 
+            - Put through transaction: 14:45 to 15:00. 
+          - For bonds: 
+            - Put through transaction: 9:00 to 11:30. 
+            - Mid-session break: 11:30 to 13:00. 
+            - Put through transaction: 13:00 to 15:00. 
+        Order is valid during trading day, does not expire during breaks between
+        sessions.
+  utter_def.trade_amount_hsx:
+    - text: |-
+        On the HSX stock exchange:
+          - The round lot is 100 shares, closed-ended fund certificates, ETF fund certificates, 
+          warrants. The maximum volume of an order is 500,000 shares, closed-ended fund 
+          certificates, ETF fund certificates, warrants.
+          - Volume of put through transactions: from 20,000 shares and closed-ended fund 
+          certificates, ETF fund certificates, warrants.
+          - No transaction unit is required for the put-through transaction.
+          - Order with volume from 01 to 99 shares (odd lot) is processed directly between 
+          the investor and the securities company, the price is determined by 90% of the 
+          reference price of the signing date of the Contract.
+  utter_def.misc_vsd:
+    - text: >-
+        Vietnam Securities Depository (VSD) manages to ensure rights and
+        interests related to securities of owners.
+  utter_def.trade_amount_hnx:
+    - text: |-
+        On HNX:
+          - The round lot order is 100 shares, ETF certificates.
+          - Volume of put through transactions is from 5,000 shares, ETF certificates, 
+          no transaction units required.
+          - Put-through transactions are not allowed on the first trading day of newly listed 
+          stocks or the come-back trading date after being suspended for 25 consecutive days 
+          until a closing price is established.
+  utter_def.trade_amount_upcom:
+    - text: |-
+        On UPCOM:
+          - The round lot order is 100 shares, no transaction unit is required for 
+          put-through transaction.
+          - Put-through transactions are not allowed on the first trading day of newly listed 
+          stocks or the come-back trading date after being suspended for 25 consecutive days 
+          until the reference price is established from the results of the call auction.
+  utter_def.misc_finance:
+    - text: >-
+        Finance is an economic category that reflects the distribution of social
+        wealth in the form of value. Finance is born in the process of forming,
+        creating, and distributing monetary funds of entities in the economy in
+        order to achieve the goals of entities under certain conditions.
+  utter_def.misc_viettin:
+    - text: >-
+        Viet Tin Securities Joint Stock Company was established by a group of
+        leading experts  in Vietnam and internationally in the field of
+        financial and economic.  Our website: http://www.viet-tin.com/
+  utter_def.account_age:
+    - text: >-
+        No matter who you are, you are always entitled to open an account when
+        you are 18 years old.
+  utter_def.misc_rich:
+    - text: >-
+        This completely depends on your ability to invest. MAI is here to help
+        you and wish you lots of profits.
+  utter_def.stock_dividends:
+    - text: >-
+        Dividend is a part of profit after tax divided to shareholders of the
+        company after deducting the prescribed funds. Annually, the amount
+        deducted to pay dividend will be approved in the General Meeting of
+        Shareholders.
+  utter_def.trade_order:
+    - text: >-
+        A trading order is a client's request to a securities company to buy or
+        sell stocks  according to a request set by the client. The basic content
+        of a trading order  includes the following: Buy or Sell Order, Client
+        Name, Account Number, Volume,  Price, Duration of the Order.
+  utter_def.misc_lost:
+    - text: >-
+        You can lose your money. MAI wishes you a reasonable investment strategy
+        to manage your losses (if any).
+  utter_def.stock_transfer:
+    - text: >-
+        The procedure for closing an account or transferring stocks from one
+        company to another is very simple. You just need to take your valid ID
+        card to the securities company and request to transfer stocks. The
+        Securities Company will be responsible for implementing the related
+        documents in the form for you.
+  utter_def.stock_etf:
+    - text: >-
+        An exchange traded fund (ETF) is a type of security that tracks an
+        index, sector, commodity, or other asset, but which can be purchased or
+        sold on a stock exchange the same way a regular stock can. An ETF can be
+        structured to track anything from the price of an individual commodity
+        to a large and diverse collection of securities. ETFs can even be
+        structured to track specific investment strategies.
+  utter_def.stock_derivatives:
+    - text: >-
+        Derivative securities are financial security whose value depends on the
+        price of an underlying asset. A derivative security is a contract about
+        a transaction that takes place in a future, predetermined present time.
+  utter_def.trade_advise:
+    - text: Unfortunately MAI cannot advise you. MAI is not allowed to do this.
+  utter_def.stock_base_deri_difference:
+    - text: >-
+        The fundamental difference between the derivative and the basic stock
+        is:
+          - Time of ownership:
+            - Derivative only owns up to the maturity date.
+            - Stock can own forever (if the issuer still exists).
+          - Volume of issue-listing:
+            - Derivative does not limit the number of contracts to be traded.
+            - Stock has a limit on the number of shares to be traded (depends on the issuer).
+          - Ability to short sell securities:
+            - Derivative can conduct short sell.
+            - Stock cannot short sell.
+          - Trade cycle:
+            - Derivative can be bought and sold during the day. Profit-loss is determined 
+            daily. In order to continue to hold, a maintenance margin level is required.
+            - Stock cannot trade on the same day and the trade cycle is T+2.
+  utter_def.trade_futures_contract:
+    - text: >-
+        Futures contracts are financial derivatives that oblige the buyer to
+        purchase some underlying asset (or the seller to sell that asset) at a
+        predetermined future price and date.
+
+        A futures contract allows an investor to speculate on the direction of a
+        security, commodity, or a financial instrument, either long or short,
+        using leverage.
+
+        Futures are also often used to hedge the price movement of the
+        underlying asset to help prevent losses from unfavorable price changes.
+  utter_def.trade_forward_contract:
+    - text: >-
+        A forward contract is a customizable derivative contract between two
+        parties to buy or sell an asset at a specified price on a future date.
+
+        Forward contracts can be tailored to a specific commodity, amount, and
+        delivery date.
+
+        Forward contracts do not trade on a centralized exchange and are
+        considered over-the-counter (OTC) instruments.
+
+        For example, forward contracts can help producers and users of
+        agricultural products hedge against a change in the price of an
+        underlying asset or commodity.
+
+        Financial institutions that initiate forward contracts are exposed to a
+        greater degree of settlement and default risk compared to contracts that
+        are marked-to-market regularly.
+  utter_def.account_open_derivatives_co:
+    - text: >-
+        According to Decree No. 42 on derivative securities and Derivative stock
+        market,  Circular 11 guides Decree No. 42, the securities companies want
+        to provide derivative services to customers needs to meet the following
+        conditions:
+          - Fully licensed in securities trading operations (Article 60 of the Law on Securities).
+          - Be approved for derivative securities dealing.
+
+        Besides, to trade derivative securities, securities companies must also
+        meet the following conditions:
+          - Charter capital, equity from 800 billion VND or more.
+          - No loss in the last 2 years.
+          - Minimum working capital ratio 220% in the last 12 months.
+          - Approved financial report.
+          - Not in the process of consolidation, merger or dissolution bankruptcy, audit or 
+          special control.
+  utter_def.stock_types:
+    - text: 'Usually there are 2 types of stock: Common and Preferred Stock.'
+  utter_def.stock_preferred:
+    - text: >-
+        Shareholders holding preferred stocks have limited powers and
+        responsibilities  such as: fixed income, no right to vote or to stand
+        for election. However,  shareholders who own preferred shares always
+        receive dividends first, and when  the company goes bankrupt, they are
+        also those who are paid by the company  in advance and then the ordinary
+        shareholders.
+  utter_def.stock_market:
+    - text: >-
+        The stock market is a collection of people who buy and sell stock (or
+        securities), which represent their ownership in a business; they may
+        include stocks that are listed on public stock exchanges, or stocks that
+        are not publicly traded.
+  utter_def.stock_profit:
+    - text: >-
+        You profit from an increase in stock prices. For example, you buy stock
+        at 20,000 VND per share and sell it at 30,000 VND per share. Then you
+        earn 10,000 VND per share (+50%). You can also benefit from dividends,
+        which is the amount the company pays its shareholders annually, for
+        example the dividend is 2,000 VND per share.
+  utter_def.account_money_transfer:
+    - text: >-
+        When you open an account, you will have to declare your bank account
+        number. You then deposit or withdraw money by transferring money back
+        and forth between your bank account and securities account. In addition
+        to online transfer, you can also go directly to a stock company to
+        deposit and withdraw money directly.
+  utter_def.trade_broker:
+    - text: >-
+        Broker is the representative, protecting the interests of customers, be
+        it an organization, company or individual, through consulting and
+        implementing transactions. Therefore, the broker's job includes
+        collecting and appraising information about domestic or foreign stock
+        markets, securities and government bonds; on that basis give appropriate
+        advice to customers.
+  utter_def.trade_broker_need:
+    - text: >-
+        It is NOT necessary to use a broker. Only use brokers when you are sure
+        of brokerage quality before opening an account, if in doubt, open an
+        independent account.
+  utter_def.trade_method:
+    - text: >-
+        In terms of form, you can invest by yourself or entrust investment to
+        experienced organizations and individuals. In terms of methods, there
+        are many stock picking techniques, you will have to learn and learn in
+        order to choose a profitable stock.
+  utter_def.account_oct:
+    - text: >-
+        Online cash transfer service (OCT) is a transfer support service,
+        allowing you to transfer money from stock accounts to bank accounts that
+        have been registered with the Securities Company via online trading
+        portal and do not need to go directly to the Securities Company to make
+        a transfer.
+  utter_def.account_foreign_requirement:
+    - text: |-
+        Opening a foreign account requires:
+          - Notarized copy of Passport
+          - Judicial Records
+          - Notarized copy of ID card/Passport of transaction representative (if any)
+          - Judicial record of the transaction representative (if any)
+  utter_def.stock_index_fund:
+    - text: >-
+        An index fund is a type of mutual fund that buys all stocks in a certain
+        type of stock index, for example, the VN30 includes 30 large-cap stocks
+        on the Ho Chi Minh City Stock Exchange.
+  utter_def.stock_exchange_hose:
+    - text: >-
+        HOSE stands for Ho Chi Minh City Stock Exchange, is a unit under the
+        State Securities Commission of Vietnam and manages the listed securities
+        trading system of Vietnam.
+  utter_def.stock_vn30:
+    - text: >-
+        VN30 is a group of large-cap stocks in the index set deployed by the Ho
+        Chi Minh City Stock Exchange on February 6, 2012, with the purpose of
+        gên the leading stocks on Vietnam's stock market capitalization and
+        liquidity.
+  utter_def.stock_in_hnx:
+    - text: >-
+        To view the stock codes of Hanoi Stock Exchange, please visit: 
+        https://www.hnx.vn/cophieu-etfs/chung-khoan-ny.html
+  utter_def.stock_in_hsx:
+    - text: >-
+        To view the stock codes of Ho Chi Minh City stock exchange, please
+        visit:  https://www.hsx.vn/Modules/Listed/Web/Symbols
+  utter_def.stock_in_upcom:
+    - text: >-
+        To view Upcom stock exchange's stock codes, please visit: 
+        https://www.hnx.vn/vi-vn/cophieu-etfs/chung-khoan-uc.html
+  utter_def.misc_ekyc:
+    - text: >-
+        Viet Tin is implementing an eKYC solution, MAI will continuously update
+        you with the latest information on this issue.
+  utter_def.misc_contact:
+    - text: >-
+        You can contact Viet Tin via hotline: 024 3941 1566 
+
+        Email: info@viet-tin.com 
+
+        Address: 2nd Floor, Building 40 Phan Boi Chau, Cua Nam, Hoan Kiem
+        District, Hanoi
+  utter_def.stock_investment_fund:
+    - text: >-
+        An investment fund is a supply of capital belonging to numerous
+        investors used to collectively purchase securities while each investor
+        retains ownership and control of his own shares. An investment fund
+        provides a broader selection of investment opportunities, greater
+        management expertise, and lower investment fees than investors might be
+        able to obtain on their own. Types of investment funds include mutual
+        funds, exchange-traded funds, money market funds, and hedge funds.
+  utter_def.stock_nav:
+    - text: >-
+        The net asset value (NAV) represents the net value of an entity and  is
+        calculated as the total value of the entity's assets minus the  total
+        value of its liabilities. Most commonly used in the context  of a mutual
+        fund or an exchange-traded fund (ETF), the NAV represents  the per
+        share/unit price of the fund on a specific date or time.
+  utter_def.stock_etf_vs_stock:
+    - text: >-
+        Both ETFs and stocks are traded on stock exchanges, which means they 
+        are both widely available. Another similarity is that they are bought 
+        and sold at the price they appear to be at the time of purchase. Stocks
+        represent shares within individual companies, whereas ETFs offer  shares
+        of multiple companies within a packaged bundle. ETFs aren’t bound  to a
+        single company, so they can contain stocks in a particular sector  or
+        contain stocks that approximate a particular index, like the S&P 500, 
+        which contains stocks in multiple sectors. The number of shares per
+        stock tends to be stable, although this is not  always the case. Stock
+        buybacks, splits, and secondary offerings may  change the number of
+        shares per stock, but these don’t happen with  the same regularity as
+        they do with an ETF. The number of shares per ETF change so that the
+        share price matches  the Net Asset Value (NAV) as closely as possible.
+        The NAV measures  the aggregate value of stocks and shares within an ETF
+        as compared to the  index that the ETF is intended to approximate.
+  utter_chat.user_need_support:
+    - custom:
+        component_id: Text
+        intent: chat.user_need_support
+        parameters:
+          action: '1'
+        text: >-
+          You can contact our phone support staff to help regain access to your
+          account.
+      text: null
+actions:
+  - action_stock_price
+  - action_trading_portfolio
+  - action_trading_orderbook
+  - action_get_news
+  - utter_greet
+  - action_get_stock_collection
+  - action_get_watchlist
+  - action_greet
+  - action_useless_fact
+  - action_get_weather
+  - action_joke
+  - action_order_history
+  - action_handover
+  - action_time
